@@ -4,18 +4,30 @@
 
 :root {
   --background: #ffffff;
-  --foreground: #171717;
+  --foreground: #1a1a1a;
 }
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Roboto', Arial, Helvetica, sans-serif;
+  margin: 0;
+  padding: 0;
 }
+
+/*
+Paleta para Modo Claro:
+Blanco Puro: #FFFFFF
+Uso sugerido: Fondo principal para mantener limpieza.
+Azul Suave: #A8D0E6
+Uso sugerido: Color principal (botones, enlaces, acentos).
+Gris Claro: #F0F4F8
+Uso sugerido: Fondos secundarios o secciones alternativas.
+Azul Polvo: #7BAACD
+Uso sugerido: Elementos destacados o botones de llamada a la acción.
+Gris Paloma: #D9E2EC
+Uso sugerido: Bordes, divisores, o áreas menos prominentes.
+Texto Principal: #1A1A1A
+Uso sugerido: Títulos y texto principal.
+Texto Secundario: #4F4F4F
+Uso sugerido: Información complementaria o secundaria.
+*/

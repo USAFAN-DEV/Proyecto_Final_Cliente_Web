@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@tailwindcss/aspect-ratio": "^0.4.2",
     "git": "^0.1.5",
     "next": "15.0.3",
     "react": "19.0.0-rc-66855b96-20241106",
@@ -21,7 +22,7 @@
     "tailwindcss": "^3.4.15"
   },
   "prettier": {
-    "printWidth": 80,
+    "printWidth": 125,
     "tabWidth": 2,
     "useTabs": false,
     "semi": true,
