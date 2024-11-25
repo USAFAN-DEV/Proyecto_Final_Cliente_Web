@@ -3,16 +3,23 @@ import { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 
-/**
- * Componente Navbar
- * @param isOpen {boolean} isOpen - Estado que indica si el navbar está abierto
- * @param {function} toggleNavbar - Función para alternar el estado del navbar
- */
-const Navbar = ({ isOpen, toggleNavbar }) => {
+const Navbar = () => {
   // Estado para manejar la altura del logo sin texto
   const [logoHeight, setLogoHeight] = useState(0);
   // Referencia para calcular la altura del logo sin texto
   const logoRef = useRef(null);
+  //useState para manejar el estado del navbar
+  const [isOpen, setIsOpen] = useState(true);
+
+  //Función para alternar el estado del navbar y mover el contenido acorde a este
+  const toggleNavbar = () => {
+    setIsOpen(!isOpen);
+
+    const mainContent = document.getElementById('main-content');
+    if (mainContent) {
+      mainContent.style.marginLeft = isOpen ? '8.3334%' : '16.6667%';
+    }
+  };
 
   /**
    * Función para obtener el logo.
@@ -27,7 +34,7 @@ const Navbar = ({ isOpen, toggleNavbar }) => {
     ) : (
       <div
         className={'w-1/2 flex justify-center mb-16'} /*transformación navbar = navbar/2 -> w-1/2*/
-        style={{ height: `${logoHeight}px`, marginLeft: '50%' }}
+        style={{ height: `${logoHeight}px`, transform: 'translateX(50%)' }}
       >
         <Image
           className={'ml-3'} /*navbar p-3*/
@@ -79,7 +86,7 @@ const Navbar = ({ isOpen, toggleNavbar }) => {
   return (
     <nav
       className={`fixed top-0 left-0 h-screen w-1/6 flex flex-col items-center p-3 border transition-transform duration-300 transform ${
-        isOpen ? 'translate-x' : '-translate-x-1/2'
+        isOpen ? 'translate-x-0' : '-translate-x-1/2'
       }`}
       style={{ borderColor: '#D9E2EC', borderWidth: '0 0.12rem 0 0' }}
     >
@@ -109,7 +116,7 @@ const Navbar = ({ isOpen, toggleNavbar }) => {
                 ? 'h-16 flex items-center justify-center hover:bg-blue-100 rounded-md group'
                 : 'h-16 w-1/3 flex items-center justify-center'
             }`}
-            style={isOpen ? {} : { marginLeft: '61%' }}
+            style={isOpen ? {} : { transform: 'translateX(185%)' }}
             href={item.href}
           >
             <div
