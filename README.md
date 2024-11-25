@@ -39,12 +39,35 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
 
 ## Estructura de carpetas
 
-/my-next-app
-/node_modules
-/public
-/src
-.gitignore
-.prettierignore
-    package.json    
-next.config.js
-README.md
+```bash
+project/
+├── .next/
+│   ├── cache/
+│   ├── static/
+│   └── ...
+├── node_modules/
+│   └── ...
+├── public/
+│   ├── images/
+│   │   ├── logo/
+│   │   │   ├── logo2.png
+│   │   │   ├── logo2-symbol.png
+│   │   │   └── logo2-symbol.png
+│   │   └── menu/
+│   │       ├── resumen.png
+│   │       └── ...
+│   └── ...
+├── src/
+│   ├── app/
+│   │   ├── globals.css
+│   │   ├── layout.js
+│   │   └── page.js
+│   ├── components/
+│   │   ├── Navbar.jsx
+│   │   └── ...
+├── .gitignore
+├── README.md
+├── package.json
+└── next.config.js
+```
+
