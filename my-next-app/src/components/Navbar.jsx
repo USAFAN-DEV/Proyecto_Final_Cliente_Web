@@ -3,6 +3,9 @@ import { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 
+/**
+ * Componente para el navbar principal
+ */
 const Navbar = () => {
   // Estado para manejar la altura del logo sin texto
   const [logoHeight, setLogoHeight] = useState(0);
@@ -11,7 +14,9 @@ const Navbar = () => {
   //useState para manejar el estado del navbar
   const [isOpen, setIsOpen] = useState(true);
 
-  //Función para alternar el estado del navbar y mover el contenido acorde a este
+  /**
+   * Función para alternar el estado del navbar y mover el contenido acorde a este
+   */
   const toggleNavbar = () => {
     setIsOpen(!isOpen);
 
@@ -74,12 +79,12 @@ const Navbar = () => {
 
   //Elementos del navbar
   const navBarItems = [
-    { name: 'Resumen', href: '/' },
-    { name: 'Clientes', href: '/clientes' },
-    { name: 'Proyectos', href: '/proyectos' },
-    { name: 'Albaranes', href: '/albaranes' },
-    { name: 'Proveedores', href: '/proveedores' },
-    { name: 'Ajustes', href: '/ajustes' },
+    { name: 'Resumen', href: '/main' },
+    { name: 'Clientes', href: '/main/clientes' },
+    { name: 'Proyectos', href: '/main/proyectos' },
+    { name: 'Albaranes', href: '/main/albaranes' },
+    { name: 'Proveedores', href: '/main/proveedores' },
+    { name: 'Ajustes', href: '/main/ajustes' },
   ];
 
   //TODO responsive navbar
@@ -131,7 +136,7 @@ const Navbar = () => {
                 width={32}
                 height={32}
               />
-              <h1 className={`font-bold text-gray-800 group-hover:text-blue-400 ${isOpen ? '' : 'hidden'}`}>{item.name}</h1>
+              <h1 className={`font-bold group-hover:text-blue-400 ${isOpen ? '' : 'hidden'}`}>{item.name}</h1>
             </div>
           </Link>
         ))}
