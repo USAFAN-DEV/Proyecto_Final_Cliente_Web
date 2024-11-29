@@ -95,7 +95,7 @@ const LoginForm = () => {
           {errors.password && <p className="mt-1 text-sm text-red-600">{errors.password.message}</p>}
         </div>
         <div>
-          <label className="block text-sm font-medium text-gray-700" htmlFor="password">
+          <label className="block text-sm font-medium text-gray-700" htmlFor="nombre">
             Nombre
           </label>
           <input
@@ -109,7 +109,7 @@ const LoginForm = () => {
           {errors.nombre && <p className="mt-1 text-sm text-red-600">{errors.nombre.message}</p>}
         </div>
         <div>
-          <label className="block text-sm font-medium text-gray-700" htmlFor="password">
+          <label className="block text-sm font-medium text-gray-700" htmlFor="apellido">
             Apellido
           </label>
           <input

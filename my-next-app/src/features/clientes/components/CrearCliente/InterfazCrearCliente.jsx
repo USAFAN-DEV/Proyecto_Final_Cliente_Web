@@ -1,6 +1,6 @@
 import Image from 'next/image';
 
-const InterfazCrearCliente = ({ handleSubmit }) => {
+const InterfazCrearCliente = ({ handleClick }) => {
   return (
     <>
       <div className="relative h-2/3" style={{ aspectRatio: `${1185 / 1080} / 1` }}>
@@ -12,7 +12,7 @@ const InterfazCrearCliente = ({ handleSubmit }) => {
       </div>
       <div>
         <button
-          onClick={handleSubmit}
+          onClick={handleClick}
           className="bg-blue-400 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded mt-[2vh]"
         >
           Crear Cliente

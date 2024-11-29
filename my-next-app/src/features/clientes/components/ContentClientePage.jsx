@@ -1,52 +1,39 @@
 'use client';
-import { useState } from 'react';
-import InterfazCrearCliente from './InterfazCrearCliente';
-import FormCrearCliente from './FormCrearCliente';
+import { useState, useEffect } from 'react';
+import CrearClientePage from './CrearCliente/CrearClientePage';
+import ListaClientesPage from './ListaClientes/ListaClientesPage';
 
 const ContentClientePage = () => {
-  const handleSubmit = () => {
-    setContentCrearCliente(FormCrearCliente);
-  };
-  const [contentCrearCliente, setContentCrearCliente] = useState(<InterfazCrearCliente handleSubmit={handleSubmit} />);
+  // Estado para manejar los clientes que hay en la API
+  const [clientes, setClientes] = useState([]);
+
+  useEffect(() => {
+    // Leer clientes desde localStorage cuando el componente se monta
+    const savedClientes = localStorage.getItem('clientes');
+    console.log(savedClientes);
+    if (savedClientes !== null) {
+      setClientes(JSON.parse(savedClientes));
+    } else {
+      // Inicializar clientes en localStorage si no existe
+      localStorage.setItem('clientes', JSON.stringify([]));
+    }
+  }, []);
+
+  useEffect(() => {
+    // Guardar clientes en localStorage cada vez que cambie
+    localStorage.setItem('clientes', JSON.stringify(clientes));
+    console.log(clientes);
+  }, [clientes]);
 
   return (
-    <div className="flex flex-row">
-      <CrearCliente content={contentCrearCliente} handleSubmit={handleSubmit} />
-      <div className="border border-green-500 flex flex-col w-2/5">
-        <LogoCliente />
-        <NotasCliente />
-        <TagsCliente />
-      </div>
-    </div>
+    <>
+      {clientes.length == 0 ? (
+        <CrearClientePage clientes={clientes} setClientes={setClientes} />
+      ) : (
+        <ListaClientesPage clientes={clientes} />
+      )}
+    </>
   );
 };
 
 export default ContentClientePage;
-
-const CrearCliente = ({ content, handleSubmit }) => {
-  return <div className="w-3/5 h-[80vh] border flex flex-col items-center">{content}</div>;
-};
-
-const LogoCliente = () => {
-  return (
-    <div className="w-full h-[20vh] border border-red-500">
-      <h1>Logo Cliente</h1>
-    </div>
-  );
-};
-
-const NotasCliente = () => {
-  return (
-    <div className="w-full h-[40vh] border border-blue-500">
-      <h1>Notes Cliente</h1>
-    </div>
-  );
-};
-
-const TagsCliente = () => {
-  return (
-    <div className="w-full h-[20vh] border border-yellow-500">
-      <h1>Tags Cliente</h1>
-    </div>
-  );
-};

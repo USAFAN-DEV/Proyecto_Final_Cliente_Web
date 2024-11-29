@@ -1,4 +1,4 @@
-import ContentClientePage from '@/features/clientes/components/ContentClientePage';
+import ContentClientePage from '@/features/clientes/components/ContentClientePage.jsx';
 
 const ClientesPage = () => {
   return <ContentClientePage />;
