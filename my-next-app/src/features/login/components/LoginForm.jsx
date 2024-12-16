@@ -15,14 +15,12 @@ import { loginUser } from '@/features/login/api/loginRequest';
 const SignSquema = Yup.object({
   email: Yup.string().email().required(),
   password: Yup.string().required().min(4).max(10),
-  nombre: Yup.string().required(),
-  apellido: Yup.string().required(),
 });
 
 /**
  * Componente de login que muestra un formulario para iniciar sesión.
  */
-const LoginForm = () => {
+const LoginForm = ({ setIsLoading }) => {
   const router = useRouter();
 
   /**
@@ -42,22 +40,23 @@ const LoginForm = () => {
    * @returns {Promise<void>}
    */
   async function onSubmit(userData) {
+    console.log('hola');
     try {
-      const { email, password, nombre, apellido } = userData;
+      const { email, password } = userData;
+      setIsLoading(true);
       const response = await loginUser({ email, password });
 
       if (response.token) {
         //Si la consulta es correcta, guardamos el token y redirigimos a la pagina principal
         localStorage.setItem('jwt', response.token);
-        localStorage.setItem('email', response.user.email);
-        localStorage.setItem('nombre', nombre);
-        localStorage.setItem('apellido', apellido);
         router.push('/main');
       } else {
         console.error('Login failed, response:', response);
+        setIsLoading(false);
       }
     } catch (error) {
       console.error('Error en onSubmit:', error);
+      setIsLoading(false);
     }
   }
 
@@ -69,9 +68,7 @@ const LoginForm = () => {
             Email
           </label>
           <input
-            {...register('email', {
-              /* { required: 'Obligatorio' } */
-            })}
+            {...register('email', {})}
             placeholder="Introduce email"
             className="w-full mt-1 px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
             id="email"
@@ -84,9 +81,7 @@ const LoginForm = () => {
             Password
           </label>
           <input
-            {...register('password', {
-              /* { required: 'Obligatorio', minLength: { value: 8, message: "Error longitud" } } */
-            })}
+            {...register('password', {})}
             placeholder="Introduce password"
             type="password"
             className="w-full mt-1 px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
@@ -94,40 +89,11 @@ const LoginForm = () => {
           />
           {errors.password && <p className="mt-1 text-sm text-red-600">{errors.password.message}</p>}
         </div>
-        <div>
-          <label className="block text-sm font-medium text-gray-700" htmlFor="nombre">
-            Nombre
-          </label>
-          <input
-            {...register('nombre', {
-              /* { required: 'Obligatorio' } */
-            })}
-            placeholder="Introduce tu nombre"
-            className="w-full mt-1 px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-            id="nombre"
-          />
-          {errors.nombre && <p className="mt-1 text-sm text-red-600">{errors.nombre.message}</p>}
-        </div>
-        <div>
-          <label className="block text-sm font-medium text-gray-700" htmlFor="apellido">
-            Apellido
-          </label>
-          <input
-            {...register('apellido', {
-              /* { required: 'Obligatorio' } */
-            })}
-            placeholder="Introduce tu apellido"
-            className="w-full mt-1 px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-            id="apellido"
-          />
-          {errors.apellido && <p className="mt-1 text-sm text-red-600">{errors.apellido.message}</p>}
-        </div>
 
         <button
           type="submit"
           className="w-full py-2 px-4 bg-indigo-600 text-white font-semibold rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
         >
-          {/*<Link href="/main">Iniciar sesion</Link>*/}
           Iniciar sesion
         </button>
       </form>

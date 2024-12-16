@@ -16,6 +16,20 @@ body {
   padding: 0;
 }
 
+/* Chrome, Edge, Safari */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 12px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent; /* Fondo transparente */
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: #a3d4f7; /* Azul claro */
+  border-radius: 10px; /* Redondeado */
+}
+
 /*
 Paleta para Modo Claro:
 Blanco Puro: #FFFFFF

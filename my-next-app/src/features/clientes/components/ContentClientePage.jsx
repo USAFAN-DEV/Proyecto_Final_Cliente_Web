@@ -1,39 +1,23 @@
 'use client';
-import { useState, useEffect } from 'react';
-import CrearClientePage from './CrearCliente/CrearClientePage';
-import ListaClientesPage from './ListaClientes/ListaClientesPage';
+import { useContext } from 'react';
+import ListaClientesContent from './ListaClientes/ListaClientesContent';
+import { useRouter } from 'next/navigation';
+import { ClienteContext } from './ClienteContext.jsx';
 
+/**
+ * Página de contenido de clientes
+ * @returns {JSX.Element}
+ */
 const ContentClientePage = () => {
+  const router = useRouter();
   // Estado para manejar los clientes que hay en la API
-  const [clientes, setClientes] = useState([]);
+  const [clientes, setClientes] = useContext(ClienteContext);
 
-  useEffect(() => {
-    // Leer clientes desde localStorage cuando el componente se monta
-    const savedClientes = localStorage.getItem('clientes');
-    console.log(savedClientes);
-    if (savedClientes !== null) {
-      setClientes(JSON.parse(savedClientes));
-    } else {
-      // Inicializar clientes en localStorage si no existe
-      localStorage.setItem('clientes', JSON.stringify([]));
-    }
-  }, []);
-
-  useEffect(() => {
-    // Guardar clientes en localStorage cada vez que cambie
-    localStorage.setItem('clientes', JSON.stringify(clientes));
-    console.log(clientes);
-  }, [clientes]);
-
-  return (
-    <>
-      {clientes.length == 0 ? (
-        <CrearClientePage clientes={clientes} setClientes={setClientes} />
-      ) : (
-        <ListaClientesPage clientes={clientes} />
-      )}
-    </>
-  );
+  if (clientes.length == 0) {
+    router.push('./clientes/crear-cliente');
+  } else {
+    return <ListaClientesContent clientes={clientes} />;
+  }
 };
 
 export default ContentClientePage;

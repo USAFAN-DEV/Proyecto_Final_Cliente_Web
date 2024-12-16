@@ -4,9 +4,11 @@ import Link from 'next/link';
  */
 const GoToRegister = () => {
   return (
-    <div className="border border-red-500 flex flex-col justify-center items-center">
+    <div className="flex flex-col justify-center items-center">
       <p>No tienes una cuenta?</p>
-      <Link href="/register">Crear cuenta</Link>
+      <Link href="/register">
+        <p className="underline">Crear cuenta</p>
+      </Link>
     </div>
   );
 };

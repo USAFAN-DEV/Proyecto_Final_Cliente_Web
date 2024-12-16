@@ -1,22 +1,15 @@
 'use client';
 import { usePathname } from 'next/navigation';
 import { useState, useEffect } from 'react';
-import BarraBusquedaNavbarSecundario from './BarraBusquedaNavbarSecundario';
-import PerfilNavbarSecundario from './PerfilNavbarSecundario';
+import BarraBusquedaNavbarSecundario from './NavbarSecundarioSearchBar';
+import PerfilNavbarSecundario from './NavbarSecundarioProfile';
 
 /**
  * @returns {JSX.Element} - Navbar secundario que aparece en la parte superior de la pagina
  */
 const NavbarSecundario = () => {
   const pathname = usePathname();
-  let nombre = '';
-  let apellido = '';
   let titulo;
-
-  useEffect(() => {
-    nombre = localStorage.getItem('nombre');
-    apellido = localStorage.getItem('apellido');
-  }, [pathname]);
 
   /**
    * Determina el titulo del navbar dependiendo del pathname.
@@ -36,8 +29,11 @@ const NavbarSecundario = () => {
     case '/main/albaranes':
       titulo = 'Albaranes';
       break;
+    case '/main/clientes/crear-cliente':
+      titulo = 'Crear Cliente';
+      break;
     default:
-      titulo = 'No hay un titulo asociado. Error';
+      titulo = 'Proyecto Especifico';
       break;
   }
 
@@ -45,7 +41,7 @@ const NavbarSecundario = () => {
     <nav className="border-t border-l border-r w-full h-[10vh] flex flex-row p-[0.5%]">
       <TituloNavbarSecundario titulo={titulo} />
       <BarraBusquedaNavbarSecundario />
-      <PerfilNavbarSecundario nombre={nombre} apellido={apellido} />
+      <PerfilNavbarSecundario />
     </nav>
   );
 };

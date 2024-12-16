@@ -1,8 +1,8 @@
 'use client';
 import { useState } from 'react';
-import LogoNavbar from './LogoNavbar';
-import BotonNavbar from './BotonNavbar';
-import MenuNavbar from './MenuNavbar';
+import LogoNavbar from './NavbarLogo';
+import BotonNavbar from './NavbarButton';
+import MenuNavbar from './NavbarMenu';
 
 /**
  * Navbar principal de la pagina web.
