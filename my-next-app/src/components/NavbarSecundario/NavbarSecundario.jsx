@@ -32,6 +32,12 @@ const NavbarSecundario = () => {
     case '/main/clientes/crear-cliente':
       titulo = 'Crear Cliente';
       break;
+    case '/main/proveedores':
+      titulo = 'Proveedores';
+      break;
+    case '/main/ajustes':
+      titulo = 'Ajustes';
+      break;
     default:
       titulo = 'Proyecto Especifico';
       break;

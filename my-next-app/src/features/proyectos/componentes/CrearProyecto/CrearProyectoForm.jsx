@@ -57,16 +57,20 @@ const CrearProyectoForm = ({ cliente }) => {
    *  ? @returns ?
    */
   const onSubmit = async (proyectoData) => {
+    if (JSON.parse(localStorage.getItem('selectedCliente')) == undefined) {
+      alert('Selecciona un cliente antes de crear un proyecto');
+      return;
+    }
     try {
-      //alert si no hay selected cliente
       setIsLoading(true);
-      let clientId = JSON.parse(localStorage.getItem('selectedCliente'))._id;
+      const selectedCliente = localStorage.getItem('selectedCliente');
+      const clientId = JSON.parse(selectedCliente)._id;
       const result = await postProyecto(proyectoData, clientId);
       console.log('Proyecto creado:', result);
+      reset();
     } catch (error) {
       console.error('Error en postCliente:', error);
     } finally {
-      reset();
       setIsLoading(false);
     }
   };
